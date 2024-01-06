@@ -10,14 +10,22 @@ source "${plugin_dir}/lib/utils.bash"
 
 mkdir -p "$ASDF_DOWNLOAD_PATH"
 
-# TODO: Adapt this to proper extension and adapt extracting strategy.
-release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME-$ASDF_INSTALL_VERSION.tar.gz"
+release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME-$ASDF_INSTALL_VERSION.tar"
 
-# Download tar.gz file to the download directory
+# Download tar file to the download directory
 download_release "$ASDF_INSTALL_VERSION" "$release_file"
 
+# Check the compression of the archive
+tar_opts=()
+mime_type="$(file --mime "${release_file}")"
+if [[ "${mime_type}" == *"/gzip" ]]; then
+    tar_opts+=("-z")
+elif [[ "${mime_type}" == *"/x-xz" ]]; then
+    tar_opts+=("-J")
+fi
+
 #  Extract contents of tar.gz file into the download directory
-tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" || fail "Could not extract $release_file"
+tar "${tar_opts[@]}" -xf "$release_file" -C "$ASDF_DOWNLOAD_PATH" || fail "Could not extract $release_file"
 
 # Remove the tar.gz file since we don't need to keep it
 rm "$release_file"
