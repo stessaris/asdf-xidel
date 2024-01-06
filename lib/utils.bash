@@ -2,10 +2,15 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for xidel.
 GH_REPO="https://github.com/deep-soft/xidel"
+# GH_REPO="https://github.com/benibela/xidel"
 TOOL_NAME="xidel"
 TOOL_TEST="xidel --help"
+
+declare -A RELEASES
+source ${plugin_dir}/lib/releases.bash
+
+os_arch="$(uname -s)-$(uname -m)"
 
 fail() {
 	echo -e "asdf-$TOOL_NAME: $*"
@@ -27,22 +32,24 @@ sort_versions() {
 list_github_tags() {
 	git ls-remote --tags --refs "$GH_REPO" |
 		grep -o 'refs/tags/.*' | cut -d/ -f3- |
-		sed 's/^v//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
+		sed 's/^Xidel_//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
 }
 
 list_all_versions() {
 	# TODO: Adapt this. By default we simply list the tag names from GitHub releases.
 	# Change this function if xidel has other means of determining installable versions.
-	list_github_tags
+	# list_github_tags
+	printf "%s\n" "${!RELEASES[@]}" | grep -e "$os_arch" | sed 's/|.*$//'
 }
 
 download_release() {
-	local version filename url
+	local version filename url key
 	version="$1"
 	filename="$2"
+	key="${version}|${os_arch}"
 
-	# TODO: Adapt the release URL convention for xidel
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	url="${RELEASES[$key]:=}"
+	[ -z "$url" ] && fail "missing version $version distribution for $os_arch"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
