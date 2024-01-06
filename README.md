@@ -1,13 +1,15 @@
 <div align="center">
 
-# asdf-<YOUR TOOL> [![Build](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/actions/workflows/build.yml/badge.svg)](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/actions/workflows/build.yml) [![Lint](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/actions/workflows/lint.yml/badge.svg)](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/actions/workflows/lint.yml)
+# asdf-xidel [![Build](https://github.com/stessaris/asdf-xidel/actions/workflows/build.yml/badge.svg)](https://github.com/stessaris/asdf-xidel/actions/workflows/build.yml) [![Lint](https://github.com/stessaris/asdf-xidel/actions/workflows/lint.yml/badge.svg)](https://github.com/stessaris/asdf-xidel/actions/workflows/lint.yml)
 
-[<YOUR TOOL>](<TOOL HOMEPAGE>) plugin for the [asdf version manager](https://asdf-vm.com).
+[Xidel](https://www.videlibri.de/xidel.html) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
 # Contents
 
+- [asdf-xidel  ](#asdf-xidel--)
+- [Contents](#contents)
 - [Dependencies](#dependencies)
 - [Install](#install)
 - [Contributing](#contributing)
@@ -25,25 +27,25 @@
 Plugin:
 
 ```shell
-asdf plugin add <YOUR TOOL>
+asdf plugin add xidel
 # or
-asdf plugin add <YOUR TOOL> https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>.git
+asdf plugin add xidel https://github.com/stessaris/asdf-xidel.git
 ```
 
-<YOUR TOOL>:
+xidel:
 
 ```shell
 # Show all installable versions
-asdf list-all <YOUR TOOL>
+asdf list-all xidel
 
 # Install specific version
-asdf install <YOUR TOOL> latest
+asdf install xidel latest
 
 # Set a version globally (on your ~/.tool-versions file)
-asdf global <YOUR TOOL> latest
+asdf global xidel latest
 
-# Now <YOUR TOOL> commands are available
-<TOOL CHECK>
+# Now xidel commands are available
+xidel --help
 ```
 
 Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
@@ -53,8 +55,8 @@ install & manage versions.
 
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
 
-[Thanks goes to these contributors](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/graphs/contributors)!
+[Thanks goes to these contributors](https://github.com/stessaris/asdf-xidel/graphs/contributors)!
 
 # License
 
-See [LICENSE](LICENSE) © [<YOUR NAME>](https://github.com/<YOUR GITHUB USERNAME>/)
+See [LICENSE](LICENSE) © [Sergio Tessaris](https://github.com/stessaris/)

@@ -6,7 +6,7 @@ Testing Locally:
 asdf plugin test <plugin-name> <plugin-url> [--asdf-tool-version <version>] [--asdf-plugin-gitref <git-ref>] [test-command*]
 
 # TODO: adapt this
-asdf plugin test <YOUR TOOL> https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>.git "<TOOL CHECK>"
+asdf plugin test xidel https://github.com/stessaris/asdf-xidel.git "xidel --help"
 ```
 
 Tests are automatically run in GitHub Actions on push and PR.
