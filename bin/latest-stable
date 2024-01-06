@@ -8,4 +8,4 @@ plugin_dir="$(dirname "${current_script_dir}")"
 # shellcheck source=../lib/utils.bash
 . "${plugin_dir}/lib/utils.bash"
 
-list_all_versions | sort_versions | xargs echo | tail -1
+list_all_versions | sort_versions | tail -1
