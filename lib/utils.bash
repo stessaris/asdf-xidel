@@ -7,10 +7,8 @@ GH_REPO="https://github.com/deep-soft/xidel"
 TOOL_NAME="xidel"
 TOOL_TEST="xidel --help"
 
-declare -A RELEASES
-source ${plugin_dir}/lib/releases.bash
-
-os_arch="$(uname -s)-$(uname -m)"
+# shellcheck source=SCRIPTDIR/releases.bash
+source "${plugin_dir:-${BASH_SOURCE%/*}/..}/lib/releases.bash"
 
 fail() {
 	echo -e "asdf-$TOOL_NAME: $*"
@@ -36,20 +34,17 @@ list_github_tags() {
 }
 
 list_all_versions() {
-	# TODO: Adapt this. By default we simply list the tag names from GitHub releases.
-	# Change this function if xidel has other means of determining installable versions.
 	# list_github_tags
-	printf "%s\n" "${!RELEASES[@]}" | grep -e "$os_arch" | sed 's/|.*$//'
+	list_releases
 }
 
 download_release() {
-	local version filename url key
+	local version filename url
 	version="$1"
 	filename="$2"
-	key="${version}|${os_arch}"
 
-	url="${RELEASES[$key]:=}"
-	[ -z "$url" ] && fail "missing version $version distribution for $os_arch"
+	url="$(release_url "$version")"
+	[ -z "$url" ] && fail "missing version $version distribution for $(uname -s) ($(uname -m))"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"

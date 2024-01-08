@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+current_script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 plugin_dir="$(dirname "${current_script_dir}")"
 
-# shellcheck source=../lib/utils.bash
+# shellcheck source=SCRIPTDIR/../lib/utils.bash
 source "${plugin_dir}/lib/utils.bash"
 
 mkdir -p "$ASDF_DOWNLOAD_PATH"
@@ -19,9 +19,9 @@ download_release "$ASDF_INSTALL_VERSION" "$release_file"
 tar_opts=()
 mime_type="$(file --mime "${release_file}")"
 if [[ "${mime_type}" == *"/gzip" ]]; then
-    tar_opts+=("-z")
+	tar_opts+=("-z")
 elif [[ "${mime_type}" == *"/x-xz" ]]; then
-    tar_opts+=("-J")
+	tar_opts+=("-J")
 fi
 
 #  Extract contents of tar.gz file into the download directory

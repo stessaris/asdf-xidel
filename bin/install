@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+current_script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 plugin_dir="$(dirname "${current_script_dir}")"
 
-# shellcheck source=../lib/utils.bash
+# shellcheck source=SCRIPTDIR/../lib/utils.bash
 source "${plugin_dir}/lib/utils.bash"
 
 install_version "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
