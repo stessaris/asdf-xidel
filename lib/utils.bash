@@ -7,13 +7,15 @@ GH_REPO="https://github.com/deep-soft/xidel"
 TOOL_NAME="xidel"
 TOOL_TEST="xidel --help"
 
-# shellcheck source=SCRIPTDIR/releases.bash
-source "${plugin_dir:-${BASH_SOURCE%/*}/..}/lib/releases.bash"
-
 fail() {
 	echo -e "asdf-$TOOL_NAME: $*"
 	exit 1
 }
+
+[ "${BASH_VERSINFO:-0}" -ge 4 ] || fail "this script requires bash version 4 or greater, using ${BASH_VERSION}"
+
+# shellcheck source=SCRIPTDIR/releases.bash
+source "${plugin_dir:-${BASH_SOURCE%/*}/..}/lib/releases.bash"
 
 curl_opts=(-fsSL)
 
