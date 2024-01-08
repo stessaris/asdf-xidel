@@ -2,7 +2,7 @@
 
 # asdf-xidel [![Build](https://github.com/stessaris/asdf-xidel/actions/workflows/build.yml/badge.svg)](https://github.com/stessaris/asdf-xidel/actions/workflows/build.yml) [![Lint](https://github.com/stessaris/asdf-xidel/actions/workflows/lint.yml/badge.svg)](https://github.com/stessaris/asdf-xidel/actions/workflows/lint.yml)
 
-[Xidel](https://www.videlibri.de/xidel.html) plugin for the [asdf version manager](https://asdf-vm.com).
+[Xidel](https://www.videlibri.de/xidel.html) plugin for the [asdf version manager](https://asdf-vm.com). This plugin fetches availablee `Xidel` binaries from different sources: for the latest stable release (0.9.8) uses the official repo [benibela/xidel](https://github.com/benibela/xidel), while the up to date 0.9.9 version (aligned with the documentation) is retrieved from the fork [deep-soft/xidel](https://github.com/deep-soft/xidel) (version is tagged with `0.9.9-beta`). The reason is that the official download page provides only nightly builds (see [Xidel - Downloads](https://www.videlibri.de/xidel.html#downloads) for details). For OSX, only Intel builds are available.
 
 </div>
 
@@ -17,10 +17,7 @@
 
 # Dependencies
 
-**TODO: adapt this section**
-
-- `bash`, `curl`, `tar`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
+- `bash >= 4.0` (**beware** that OSX is shipped with a 3.x version!), `curl`, `tar` (supporting [XZ compression](https://en.wikipedia.org/wiki/XZ_Utils)), and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
 
 # Install
 
